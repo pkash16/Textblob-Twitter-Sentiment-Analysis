@@ -20,7 +20,11 @@ input_query = raw_input("Type in an a query\n")
 json_data = api.search_tweets(q=input_query, lang='en', count=1)
 data = json.loads(jsonpickle.encode(json_data))
 
-print(data)
+print(data["statuses"])
+
+
+
+
 
 '''
 
