@@ -11,7 +11,7 @@ user = api.user
 
 input_query = raw_input("Type in an a query\n")
 
-json_data = api.search_tweets(q=input_query, lang='en', count=200)
+json_data = api.search_tweets(q=input_query, lang='en', count=1000)
 data = json.loads(jsonpickle.encode(json_data))
 
 newdata = json.loads(data["json"])
@@ -20,9 +20,13 @@ newdata = json.loads(data["json"])
 for x in range(0,len(newdata['statuses'])):
 	print(unidecode(newdata['statuses'][x]['text']))
 	sent = TextBlob(unidecode(newdata['statuses'][x]['text']))
-	total_sentiment += (sent.sentiment.polarity + 1)
-	
-	print(sent.sentiment.polarity);
+	total_sentiment += (sent.sentiment.polarity + 2)
+	print(sent.sentiment.polarity)
+
+avg_sentiment = (total_sentiment / len(newdata['statuses']))
+print("Average sentiment ")
+print (avg_sentiment);
+
 
 '''
 
